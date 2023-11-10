@@ -14,9 +14,7 @@ export class BooksService {
   }
 
   async findAll(): Promise<Book[]> {
-    return await this.booksRepository.findAll<Book>({
-      include: [{model: Book, attributes: []}]
-    });
+    return await this.booksRepository.findAll();
   }
 
   async delete(id) {

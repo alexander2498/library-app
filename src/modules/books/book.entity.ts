@@ -3,7 +3,7 @@ import {Column, Model, PrimaryKey, Table} from "sequelize-typescript";
 export class Book extends Model {
   @PrimaryKey
   @Column
-  id: string;
+  id: number;
 
   @Column
   title: string;

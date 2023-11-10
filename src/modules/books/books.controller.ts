@@ -6,10 +6,9 @@ import {Book} from "./book.entity";
 @Controller('books')
 export class BooksController {
   constructor(private readonly bookService: BooksService) {}
-
   @Get()
-  async findAll() {
-    return await this.bookService.findAll();
+  findAll(): Promise<Book[]> {
+    return this.bookService.findAll();
   }
 
   @Post()
@@ -29,13 +28,13 @@ export class BooksController {
   }
 
   @Delete(":id")
-  async delete(@Param() id: number) {
-    const deleted = await this.bookService.delete(id);
+  async remove(@Param('id') id: number) {
+    const deleted = await this.bookService.delete(id)
 
     if (deleted === 0) {
-      throw new NotFoundException("This Post doesn't exist");
+      throw new NotFoundException('This Post doesn\'t exist');
     }
 
-    return 'Successfully deleted';
+    return deleted;
   }
 }
